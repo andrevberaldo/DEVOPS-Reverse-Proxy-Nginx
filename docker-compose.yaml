@@ -1,0 +1,28 @@
+version: '3'
+
+networks:
+  proxy:
+    driver: bridge
+
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - proxy
+
+  red:
+    build: Apps/red
+    networks:
+      - proxy
+  
+  blue:
+    build: Apps/blue
+    networks:
+      - proxy
+
+  
+ 
